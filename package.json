@@ -1,5 +1,5 @@
 {
-  "name": "ununik race",
+  "name": "ununik_race",
   "version": "1.0.0",
   "description": "Prihlaskovy system, vypocet zavodu a generovani vysledku",
   "main": "main.js",
