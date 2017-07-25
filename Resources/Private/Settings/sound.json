@@ -1,0 +1,11 @@
+{"jídelní lístek": {
+   "Id": "soubor",
+   "Hodnota": "Soubor",
+   "vyskakovat": {
+     "Menuitem": [
+       {"Hodnota": "Nový", "onclick": "CreateNewDoc ()"},
+       {"Value": "Open", "onclick": "OpenDoc ()"},
+       {"Value": "Close", "onclick": "CloseDoc ()"}
+     ]
+   }}
+ }} 

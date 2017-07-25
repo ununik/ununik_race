@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Race</title>
+    <script>
+	    $ = require('jquery');
+	    var loc = window.location.pathname;
+	    var dir = loc.substring(0, loc.lastIndexOf('/'));
+    </script>
+    <script src="../../../Public/Scripts/settings.js"></script>
+  </head>
+  <body>
+    <h1>Zvuky</h1>
+  </body>
+
+  <script>
+	$(function() {
+		getSettingsFor('sound');
+	});
+    // You can also require other files to run in this process
+    //require('./renderer.js')
+  </script>
+</html>

@@ -6,6 +6,7 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+const Menu = electron.Menu;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,14 +14,64 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+	  width: 800,
+	  height: 600,
+	  icon: path.join(__dirname, 'Resources/Public/Images/icon.png')
+  })
+  
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'Resources/Private/Templates/Settings/sound.html'),
     protocol: 'file:',
     slashes: true
   }))
+  
+  const menuTemplate = [
+        {
+        	label: 'Zavod',
+            submenu: [
+                {
+                    label: 'Novy zavod',
+                    click: () => {
+                    	mainWindow.loadURL(url.format({
+                    	    pathname: path.join(__dirname, 'Resources/Private/Templates/new.html'),
+                    	    protocol: 'file:',
+                    	    slashes: true
+                    	  }))
+                    }
+                },
+                {
+                    label: 'Otevrit zavod',
+                    click: () => {
+                    	mainWindow.loadURL(url.format({
+                    	    pathname: path.join(__dirname, 'Resources/Private/Templates/open.html'),
+                    	    protocol: 'file:',
+                    	    slashes: true
+                    	  }))
+                    }
+                }
+            ]
+        },
+        {
+        	label: 'Nastaveni',
+            submenu: [
+                {
+                    label: 'Zvuky',
+                    click: () => {
+                    	mainWindow.loadURL(url.format({
+                    	    pathname: path.join(__dirname, 'Resources/Private/Templates/Settings/sound.html'),
+                    	    protocol: 'file:',
+                    	    slashes: true
+                    	  }))
+                    }
+                },
+            ]
+        }
+    ];
+    const menu = Menu.buildFromTemplate(menuTemplate);
+    //Menu.setApplicationMenu(menu);
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -32,6 +83,8 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+  
+  mainWindow.maximize();
 }
 
 // This method will be called when Electron has finished
