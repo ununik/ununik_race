@@ -8,6 +8,7 @@ const path = require('path')
 const url = require('url')
 const Menu = electron.Menu;
 
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -23,7 +24,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'Resources/Private/Templates/Settings/sound.html'),
+    pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -35,22 +36,39 @@ function createWindow () {
                 {
                     label: 'Novy zavod',
                     click: () => {
-                    	mainWindow.loadURL(url.format({
+                    	openWindow = new BrowserWindow({
+	                  		  width: 800,
+	                  		  height: 600,
+	                  		  icon: path.join(__dirname, 'Resources/Public/Images/icon.png')
+	                  	  })
+	                  	openWindow.loadURL(url.format({
                     	    pathname: path.join(__dirname, 'Resources/Private/Templates/new.html'),
                     	    protocol: 'file:',
                     	    slashes: true
                     	  }))
+                    	  
+                    	  openWindow.maximize();
                     }
                 },
                 {
                     label: 'Otevrit zavod',
                     click: () => {
-                    	mainWindow.loadURL(url.format({
+                    	openWindow = new BrowserWindow({
+                    		  width: 800,
+                    		  height: 600,
+                    		  icon: path.join(__dirname, 'Resources/Public/Images/icon.png')
+                    	  })
+                    	openWindow.loadURL(url.format({
                     	    pathname: path.join(__dirname, 'Resources/Private/Templates/open.html'),
                     	    protocol: 'file:',
                     	    slashes: true
                     	  }))
+                	    openWindow.maximize();
                     }
+                },
+                {
+                    label: 'Zavrit',
+                    role: 'close'
                 }
             ]
         },
@@ -71,10 +89,10 @@ function createWindow () {
         }
     ];
     const menu = Menu.buildFromTemplate(menuTemplate);
-    //Menu.setApplicationMenu(menu);
+    Menu.setApplicationMenu(menu);
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+   mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

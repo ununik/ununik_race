@@ -3,13 +3,19 @@
   <head>
     <meta charset="UTF-8">
     <title>Race</title>
+    <script>
+	    $ = require('jquery');
+    </script>
+    <script src="../../Public/Scripts/race.js"></script>
   </head>
   <body>
     <h1>Open</h1>
+    <div id="lastCompetitions"></div>
   </body>
 
   <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
+    //require('./renderer.js')
+    console.log(getAllRaces());
   </script>
 </html>

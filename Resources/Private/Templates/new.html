@@ -3,13 +3,33 @@
   <head>
     <meta charset="UTF-8">
     <title>Race</title>
+    <script>
+	    $ = require('jquery');
+    </script>
+    <script src="../../Public/Scripts/race.js"></script>
   </head>
   <body>
     <h1>New</h1>
+    <form id="new_race_form">
+    	<div>
+    		<label for="race_name">Nazev</label>
+    		<input type="text" name="race_name" id="race_name" required>
+    	</div>
+    	<div>
+    		<label for="race_date">Datum</label>
+    		<input type="text" name="race_date" id="race_date" required>
+    	</div>
+    	
+    	<input type="submit" value="vytvorit">
+    </form>
   </body>
 
   <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
+    //require('./renderer.js')
+    $( "#new_race_form" ).submit(function( event ) {
+        newRaceCheck();
+    	event.preventDefault();
+    });
   </script>
 </html>
